@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title> Text Management Tool </title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+	<script src="/javascripts/angularApp.js"></script>
+</head>
+<body ng-app="textManagement" ng-controller="textManagementCtrl">
+	<div>
+		{{test}}
+	</div>
+	<br>
+	<form>
+    <input type="text" ng-model="inputText"></input>
+    <button type="submit">Done</button>
+	<br><br>
+	<textarea readonly rows="4" cols="50"></textarea>
+	</form>
+</form>
+</body>
+</html>
