@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 require('./models/Texts');
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect('mongodb://localhost/textManagement');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
