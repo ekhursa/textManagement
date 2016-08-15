@@ -10,10 +10,15 @@
 	</div>
 	<br>
 	<form>
-    <input type="text" ng-model="inputText"></input>
-    <button type="submit">Done</button>
+    <p>Text: <input type="text" ng-model="formModel.text"></input></p>
+	<p>User Name: <input type="user" ng-model="formModel.user"></input></p>
+	<p>City: <input type="user" ng-model="formModel.city"></input></p>
+    <button type="submit" ng-click="submitText()">Done</button>
 	<br><br>
-	<textarea readonly rows="4" cols="50"></textarea>
+	<textarea readonly rows="4" cols="50" ng-model = "text"></textarea>
+	<p>Latitude: <textarea readonly ng-model="cityInfo.longitude"></textarea></p>
+	<p>Longitude: <textarea readonly ng-model="cityInfo.latitude"></textarea></p>
+	<p>Temperature: <textarea readonly ng-model="cityInfo.temperatures"></textarea></p>
 	</form>
 </form>
 </body>
