@@ -4,21 +4,36 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
 	<script src="/javascripts/angularApp.js"></script>
 </head>
-<body ng-app="textManagement" ng-controller="textManagementCtrl">
-	<div>
-		{{test}}
-	</div>
+<body ng-app="textManagement" ng-controller="textManagementCtrl" ng-init="getAllTextsFormatted()">
+
+	<script type="text/ng-template"  id="render_text_tree.html">
+	<span ng-click="$parent.formModel.parentId=text._id"> {{text.user}} : {{text.text}} </span>
+    <ul>
+        <li ng-repeat="text in text.children" ng-include="'render_text_tree.html'"></li>
+    </ul>
+    </script>
+
+    <h1>Please Enter a Text</h1>
 	<br>
 	<form>
     <p>Text: <input type="text" ng-model="formModel.text"></input></p>
 	<p>User Name: <input type="user" ng-model="formModel.user"></input></p>
 	<p>City: <input type="user" ng-model="formModel.city"></input></p>
     <button type="submit" ng-click="submitText()">Done</button>
+	<button type="submit" ng-click="getAllTextByUser()">Get All Texts By User</button>
+	<button type="submit" ng-click="submitText()">Reply to a Text</button>
 	<br><br>
 	<textarea readonly rows="4" cols="50" ng-model = "text"></textarea>
-	<p>Latitude: <textarea readonly ng-model="cityInfo.longitude"></textarea></p>
-	<p>Longitude: <textarea readonly ng-model="cityInfo.latitude"></textarea></p>
-	<p>Temperature: <textarea readonly ng-model="cityInfo.temperatures"></textarea></p>
+	<p>Latitude: <textarea readonly ng-model="cityInfo.latitude"></textarea></p>
+	<p>Longitude: <textarea readonly ng-model="cityInfo.longitude"></textarea></p>
+	<p>Temperature: <textarea readonly ng-model="cityInfo.temperature"></textarea></p>
+
+	 <p> {{formModel.parentId}} </p>
+	 
+	 <h3> New Form View </h3>
+	 <ul>
+    <li ng-repeat="text in allTexts" ng-click="$parent.formModel.parentId=text._id" ng-include="'render_text_tree.html'"></li>
+    </ul>
 	</form>
 </form>
 </body>

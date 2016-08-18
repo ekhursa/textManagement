@@ -5,7 +5,8 @@ var TextSchema = new mongoose.Schema({
   user: String,
   city: String,
   date: { type: Date, default: Date.now },
-  parentId: String
+  parentId: String,
+  children: []
 });
 
 mongoose.model('Text', TextSchema);
