@@ -7,7 +7,7 @@
 <body ng-app="textManagement" ng-controller="textManagementCtrl" ng-init="getAllTextsFormatted()">
 
 	<script type="text/ng-template"  id="render_text_tree.html">
-	<span ng-click="$parent.formModel.parentId=text._id"> {{text.user}} : {{text.text}} </span>
+	<span ng-click="formModel.parentId=text._id"> {{text.user}} : {{text.text}} : {{text.date}} </span>
     <ul>
         <li ng-repeat="text in text.children" ng-include="'render_text_tree.html'"></li>
     </ul>
@@ -23,7 +23,7 @@
 	<button type="submit" ng-click="getAllTextByUser()">Get All Texts By User</button>
 	<button type="submit" ng-click="submitText()">Reply to a Text</button>
 	<br><br>
-	<textarea readonly rows="4" cols="50" ng-model = "text"></textarea>
+	<textarea readonly rows="4" cols="50">{{text}}</textarea>
 	<p>Latitude: <textarea readonly ng-model="cityInfo.latitude"></textarea></p>
 	<p>Longitude: <textarea readonly ng-model="cityInfo.longitude"></textarea></p>
 	<p>Temperature: <textarea readonly ng-model="cityInfo.temperature"></textarea></p>
@@ -32,7 +32,7 @@
 	 
 	 <h3> New Form View </h3>
 	 <ul>
-    <li ng-repeat="text in allTexts" ng-click="$parent.formModel.parentId=text._id" ng-include="'render_text_tree.html'"></li>
+    <li ng-repeat="text in allTexts" ng-click="$formModel.parentId=text._id" ng-include="'render_text_tree.html'"></li>
     </ul>
 	</form>
 </form>
