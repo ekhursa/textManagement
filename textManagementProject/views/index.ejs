@@ -1,4 +1,5 @@
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <head>
 	<title> Text Management Tool </title>
@@ -8,13 +9,16 @@
 <body ng-app="textManagement" ng-controller="textManagementCtrl" ng-init="getAllTextsFormatted()">
 
 	<script type="text/ng-template"  id="render_text_tree.html">
+	<div class="w3-border w3-round-xlarge w3-hover-border-red w3-aqua">
 	<span ng-click="formModel.parentId=text._id"> {{text.user}} : {{text.text}} : {{text.date}} </span>
-    <ul>
+	</div>
+    <ul style="list-style-type:none">
         <li ng-repeat="text in text.children" ng-include="'render_text_tree.html'"></li>
     </ul>
     </script>
-
-    <h1>Please Enter a Text</h1>
+	<div class="w3-row">
+    <div class="w3-col s6 w3-green">
+    <h1>Welcome to Text Management Tool</h1>
 	<br>
 	<form>
     <p>Text: <input type="text" ng-model="formModel.text" required></input></p>
@@ -30,11 +34,14 @@
 	<p>Temperature: <textarea readonly ng-model="cityInfo.temperature"></textarea></p>
 
 	 <p> {{formModel.parentId}} </p>
-	 
-	 <h3> New Form View </h3>
-	 <ul>
+	 </div>
+	 <div class="w3-col s6">
+	 <h1> Forum View </h1>
+	 <ul style="list-style-type:none">
     <li ng-repeat="text in allTexts" ng-click="$formModel.parentId=text._id" ng-include="'render_text_tree.html'"></li>
     </ul>
+	</div>
+	</div>
 	</form>
 </form>
 </body>
