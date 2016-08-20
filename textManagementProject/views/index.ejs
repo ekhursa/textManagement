@@ -1,4 +1,5 @@
 <html>
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <head>
 	<title> Text Management Tool </title>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
@@ -16,8 +17,8 @@
     <h1>Please Enter a Text</h1>
 	<br>
 	<form>
-    <p>Text: <input type="text" ng-model="formModel.text"></input></p>
-	<p>User Name: <input type="user" ng-model="formModel.user"></input></p>
+    <p>Text: <input type="text" ng-model="formModel.text" required></input></p>
+	<p>User Name: <input type="user" ng-model="formModel.user" required></input></p>
 	<p>City: <input type="user" ng-model="formModel.city"></input></p>
     <button type="submit" ng-click="submitText()">Done</button>
 	<button type="submit" ng-click="getAllTextByUser()">Get All Texts By User</button>
