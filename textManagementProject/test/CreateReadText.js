@@ -6,15 +6,9 @@ var expect = chai.expect;
 var supertest = require('supertest');
 var api = supertest('http://localhost:3000');
 
+var textIdToReply;
+
 describe('Texts', function() {
-  /*it('should list the texts GET', function(done) {
-  chai.request(server)
-    .get('/texts')
-    .end(function(err, res){
-      res.should.have.status(200);
-      done();
-    });
-});*/
  it('POST a Text, response code should be 200', function (done) {
   api.post('/texts')
   .send({
@@ -56,7 +50,29 @@ describe('Texts', function() {
 	  expect(res.body.city).to.equal("mississauga");
 	  expect(res.body.date).to.not.equal(null);
 	  expect(res.body._id).to.not.equal(null);
+	  textIdToReply = res.body._id;
 	  expect(res.body.user).to.equal("tester786");
+	  done();
+  })
+});
+
+ it('Reply to a Text, Replying to an existing text using POST', function (done) {
+  api.post('/texts')
+  .send({
+	  text: "I am replying to an Existing text",
+	  user: "tester489",
+	  city: "mississauga",
+	  parentId: textIdToReply
+	  
+  })
+  .expect(200)
+  .end(function(err, res){
+	  expect(res.body.text).to.equal("I am replying to an Existing text");
+	  expect(res.body.city).to.equal("mississauga");
+	  expect(res.body.date).to.not.equal(null);
+	  expect(res.body._id).to.not.equal(null);
+	  expect(res.body.user).to.equal("tester489");
+	  expect(res.body.parentId).to.equal(textIdToReply);
 	  done();
   })
 });
