@@ -23,7 +23,6 @@ router.get("/texts/forumView", function (req, res, next) {
 		for (var i = 0; i < texts.length; i++) {
 			if (texts[i].parentId == null) {
 				populateChildren(texts[i], texts);
-				console.log(texts[i].children);
 				sortedArray.push(texts[i]);
 			}
 		}

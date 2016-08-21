@@ -21,22 +21,24 @@
     <h1>Welcome to Text Management Tool</h1>
 	<br>
 	<form>
-    <p>Text: <input type="text" ng-model="formModel.text" required></input></p>
+    <p>Text: <input type="text" ng-model="formModel.text"></input></p>
 	<p>User Name: <input type="user" ng-model="formModel.user" required></input></p>
 	<p>City: <input type="user" ng-model="formModel.city"></input></p>
-    <button type="submit" ng-click="submitText()">Done</button>
+    <button type="submit" ng-click="submitText()">Submit</button>
 	<button type="submit" ng-click="getAllTextByUser()">Get All Texts By User</button>
-	<button type="submit" ng-click="submitText()">Reply to a Text</button>
 	<br><br>
-	<textarea readonly rows="4" cols="50">{{text}}</textarea>
-	<p>Latitude: <textarea readonly ng-model="cityInfo.latitude"></textarea></p>
-	<p>Longitude: <textarea readonly ng-model="cityInfo.longitude"></textarea></p>
-	<p>Temperature: <textarea readonly ng-model="cityInfo.temperature"></textarea></p>
-
-	 <p> {{formModel.parentId}} </p>
+	<p> Message Log <textarea readonly rows="1" cols="50">{{text}}</textarea> </p>
+	<p>Latitude: <textarea readonly rows="1" ng-model="cityInfo.latitude"></textarea></p>
+	<p>Longitude: <textarea readonly rows="1" ng-model="cityInfo.longitude"></textarea></p>
+	<p>Temperature: <textarea readonly rows="1" ng-model="cityInfo.temperature"></textarea></p>
+	<p>All Texts By User</p>
+	<ul>
+		<textarea readonly rows="4" cols="50">{{textsByUser}}</textarea>
+	</ul>
 	 </div>
 	 <div class="w3-col s6">
 	 <h1> Forum View </h1>
+	 <p> To reply to a text, click on the text you want to reply to, fill out your reply on the left and click on "Submit" Button</p>
 	 <ul style="list-style-type:none">
     <li ng-repeat="text in allTexts" ng-click="$formModel.parentId=text._id" ng-include="'render_text_tree.html'"></li>
     </ul>
