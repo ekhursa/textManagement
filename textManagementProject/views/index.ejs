@@ -10,7 +10,7 @@
 
 	<script type="text/ng-template"  id="render_text_tree.html">
 	<div class="w3-border w3-round-xlarge w3-hover-border-red w3-aqua">
-	<span ng-click="formModel.parentId=text._id"> {{text.user}} : {{text.text}} : {{text.date}} </span>
+	<span ng-click="set_textId(text._id)" ng-style="set_color(text._id)">{{text.user}} : {{text.text}} : {{text.date}}</span>
 	</div>
     <ul style="list-style-type:none">
         <li ng-repeat="text in text.children" ng-include="'render_text_tree.html'"></li>
