@@ -55,6 +55,7 @@ app.controller('textManagementCtrl', [
 					$scope.text = data.text;
 					$rootScope.formModel.text = null;
 					$rootScope.formModel.user = null;
+					$rootScope.formModel.parentId = null;
 				})
 
 				.error(function (data) {
