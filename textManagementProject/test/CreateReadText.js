@@ -1,5 +1,4 @@
 var chai = require('chai');
-//var server = require('../server/app');
 var should = chai.should();
 var request = require('request');
 var expect = chai.expect;
@@ -77,6 +76,19 @@ describe('Texts', function() {
   })
 });
 
+ it('Verifying Reply is shown properly in Forum View', function (done) {
+  api.get('/texts/forumView')
+  .expect(200)
+  .end(function(err, res){
+	  for (var i=0; i < res.body.length; i++){
+		  if (res.body[i]._id == textIdToReply && res.body[i].children){
+			  expect(res.body[i].children.length).to.equal(1);
+		  }
+	  }
+	  done();
+  })
+});
+
  it('GET all Texts, Response Code should be 200, response should be an Array', function (done) {
   api.get('/texts')
   .expect(200)
@@ -88,5 +100,31 @@ describe('Texts', function() {
  it('GET all Texts in Forum View, response code should be 200, response should be of type object', function (done) {
   api.get('/texts/forumView')
   .expect(200,done);
+});
+
+ it('POST a Text, response time should be less than 10 ms', function (done) {
+	 this.timeout(10);
+  api.post('/texts')
+  .send({
+	  text: "We are Posting a Text",
+	  user: "tester1543",
+	  city: "lahore"
+  })
+  .expect(200,done);
+});
+
+ it('GET all Texts in Forum View, response time should be less than 50 ms', function (done) {
+	this.timeout(50);
+  api.get('/texts/forumView')
+  .expect(200,done);
+});
+
+ it('GET all Texts, response time should be less than 30 ms', function (done) {
+  this.timeout(30);
+  api.get('/texts')
+  .end(function(err, res){
+	  expect(res.body).to.be.an('Array');
+	  done();
+  })
 });
 });
