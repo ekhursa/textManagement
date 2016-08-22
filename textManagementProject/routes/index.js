@@ -69,26 +69,6 @@ router.post("/texts", function (req, res, next) {
 	});
 });
 
-/*router.get('/texts/:text', function (req, res) {
-	res.json(req.text);
-});*/
-
-router.param('text', function (req, res, next, id) {
-	var query = Text.findById(id);
-
-	query.exec(function (err, text) {
-		if (err) {
-			return next(err);
-		}
-		if (!text) {
-			return next(new Error('can\'t find text'));
-		}
-
-		req.text = text;
-		return next();
-	});
-});
-
 router.use(function(err, req, res, next) {
   // Do logging and user-friendly error message display
   console.error(err);

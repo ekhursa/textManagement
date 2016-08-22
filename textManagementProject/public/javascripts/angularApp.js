@@ -32,17 +32,23 @@ app.controller('textManagementCtrl', [
 				$http.get('/texts').success(function (data) {
 					for (var i = 0; i < data.length; i++) {
 						if (data[i].user == $rootScope.formModel.user) {
-							var line = data[i].text +" "+ data[i].date;
+							var line = data[i].text + " " + data[i].date;
 							textsByUserArray.push(line);
 						}
 						$scope.textsByUser = textsByUserArray.toString();
 					}
+				})
+				.error(function (data) {
+					$scope.textsByUser = data;
 				})
 			}
 
 			$scope.getAllTextsFormatted = function () {
 				$http.get('/texts/forumView').then(function (response) {
 					$scope.allTexts = response.data;
+				})
+				.error(function (data) {
+					$scope.text = data;
 				})
 			}
 

@@ -129,7 +129,7 @@ describe('Texts', function () {
 	});
 
 	it('Post 100 Texts', function (done) {
-		this.timeout(120);
+		this.timeout(200);
 		for (var i = 0; i < 100; i++) {
 			api.post('/texts')
 			.send({
