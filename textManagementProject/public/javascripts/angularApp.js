@@ -44,8 +44,8 @@ app.controller('textManagementCtrl', [
 			}
 
 			$scope.getAllTextsFormatted = function () {
-				$http.get('/texts/forumView').then(function (response) {
-					$scope.allTexts = response.data;
+				$http.get('/texts/forumView').success(function (data) {
+					$scope.allTexts = data;
 				})
 				.error(function (data) {
 					$scope.text = data;
